@@ -3,7 +3,7 @@
 
 title: My sample book
 author: Huy Truong
-logo: logo.png
+logo: "My sample book"
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
