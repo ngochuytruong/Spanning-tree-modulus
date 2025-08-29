@@ -1,9 +1,9 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: My sample book
+title: Spanning tree modulus
 author: Huy Truong
-logo: "My sample book"
+logo: "Spanning tree modulus"
 
 only_build_toc_files: true
 
