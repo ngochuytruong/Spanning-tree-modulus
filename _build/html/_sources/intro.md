@@ -1,11 +1,16 @@
-# Welcome to your Jupyter Book
+# A Journey into the Modulus of Spanning Trees
 
-This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out [the Jupyter Book documentation](https://jupyterbook.org) for more information.
+Spanning trees are among the most versatile objects in graph theory, encoding
+connectivity, reliability, and the structure of flows and cuts. In this book
+we study them through the lens of *discrete modulus*, a convex optimization
+framework that assigns edge densities to “spread” congestion across a finite
+ground set so that every object in a given family is adequately covered at
+minimal energy cost. Modulus has proved effective for families of $s$–$t$
+paths, cuts, and other structures; here we develop the *spanning tree
+modulus*, and then connect it to matroidal geometry, revealing clean duality,
+intrinsic edge usage statistics, and algorithmic consequences.
 
-Check out the content pages bundled with this sample book to see more.
+This book is intended for graduate students and researchers in computer science, mathematics, and operations research who have an interest in graph theory, combinatorial optimization, and the development of new mathematical tools for analyzing complex networks. We hope that the theory of the spanning tree modulus will not only solve existing problems but also open up new avenues of research for years to come.
 
 ```{tableofcontents}
 ```
