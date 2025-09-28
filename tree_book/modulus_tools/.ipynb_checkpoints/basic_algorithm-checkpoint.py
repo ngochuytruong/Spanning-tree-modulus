@@ -184,7 +184,7 @@ def modulus(m, solve_subproblem, find_shortest, p = 2, sigma = None, tol = 1e-3,
             
         # update the upper bound
         if length > 0:
-            if p is np.Inf:
+            if p is np.inf:
                 upper = np.abs(sigma*rho/length)
             else:
                 upper = np.sum(sigma*(rho/length)**p)
