@@ -3,6 +3,11 @@
 
 format: jb-book
 root: intro
-chapters:
-- file: tree_book/Exact_algorithm_trees
-
+parts:
+- caption: Spanning Tree Modulus 
+  chapters:
+  - file: tree_book/Exact_algorithm_trees
+  - file: tree_book/Reinforcement_and_sparsification
+- caption: References
+  chapters:
+  - file: References
