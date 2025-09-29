@@ -179,7 +179,6 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Exact_algorithm_trees.html">Spanning tree modulus</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Reinforcement and sparsification for graphs</a></li>
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
 <ul class="nav bd-sidenav">
@@ -379,17 +378,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Reinforcement and sparsification for graphs</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#strength-and-fractional-arboricity">Strength and fractional arboricity</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-fractional-arboricity">Compute fractional arboricity</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-fractional-arboricity-to-compute-spanning-tree-modulus">Using fractional arboricity to compute spanning tree modulus</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homogeneous-graph-reinforcement">Homogeneous graph reinforcement</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homogeneous-graph-sparsification">Homogeneous graph sparsification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#large-graph-example">Large Graph Example</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#large-graph-example">Large Graph Example</a></li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -1015,9 +1010,8 @@ Total cost = -5.0
 </div>
 <p>Note that the new weights obtained after sparsification may include zeros. Removing edges with weight zero does not disconnect the graph.</p>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="large-graph-example">
-<h1>Large Graph Example<a class="headerlink" href="#large-graph-example" title="Link to this heading">#</a></h1>
+<section id="large-graph-example">
+<h2>Large Graph Example<a class="headerlink" href="#large-graph-example" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">random_geometric_graph</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="mf">0.16</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">3810312</span><span class="p">)</span>
@@ -1112,6 +1106,7 @@ Edge thickness given by weights
 </div>
 </div>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1177,17 +1172,13 @@ Edge thickness given by weights
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Reinforcement and sparsification for graphs</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#strength-and-fractional-arboricity">Strength and fractional arboricity</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-fractional-arboricity">Compute fractional arboricity</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-fractional-arboricity-to-compute-spanning-tree-modulus">Using fractional arboricity to compute spanning tree modulus</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homogeneous-graph-reinforcement">Homogeneous graph reinforcement</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homogeneous-graph-sparsification">Homogeneous graph sparsification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#large-graph-example">Large Graph Example</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#large-graph-example">Large Graph Example</a></li>
-</ul>
-
   </nav></div>
 
 </div></div>
