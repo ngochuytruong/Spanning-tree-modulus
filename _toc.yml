@@ -8,6 +8,7 @@ parts:
   chapters:
   - file: tree_book/Exact_algorithm_trees
   - file: tree_book/Reinforcement_and_sparsification
+  - file: tree_book/hypertree_notebook
 - caption: References
   chapters:
   - file: References

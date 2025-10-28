@@ -1,0 +1,1035 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Modulus for hypertrees &#8212; Spanning tree modulus</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tree_book/hypertree_notebook';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="References" href="../References.html" />
+    <link rel="prev" title="Reinforcement and sparsification for graphs" href="Reinforcement_and_sparsification.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Spanning tree modulus</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    A Journey into the Modulus of Spanning Trees
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Spanning Tree Modulus</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Exact_algorithm_trees.html">Spanning tree modulus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Reinforcement_and_sparsification.html">Reinforcement and sparsification for graphs</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Modulus for hypertrees</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../References.html">References</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ngochuytruong/notebook1" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ngochuytruong/notebook1/issues/new?title=Issue%20on%20page%20%2Ftree_book/hypertree_notebook.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/tree_book/hypertree_notebook.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Modulus for hypertrees</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypergraphs">Hypergraphs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypertrees">Hypertrees</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equivalent-definition-of-hypertrees">Equivalent definition of hypertrees</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage-matrix">Usage matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypertree-modulus">Hypertree modulus</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#strength-and-fractional-arboricity">Strength and fractional arboricity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypertree-1-modulus-and-strength">Hypertree 1-modulus and strength</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypertree-2-modulus-encodes-strength-and-fractional-arboricity">Hypertree 2-modulus encodes strength and fractional arboricity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multitree-hypergraph">Multitree hypergraph</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Usage matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multitrees-modulus-properties">Multitrees modulus properties</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decomposition-process">Decomposition process</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="modulus-for-hypertrees">
+<h1>Modulus for hypertrees<a class="headerlink" href="#modulus-for-hypertrees" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">modulus_tools.basic_algorithm</span><span class="w"> </span><span class="kn">import</span> <span class="n">matrix_modulus</span><span class="p">,</span> <span class="n">modulus</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">combinations</span><span class="p">,</span> <span class="n">chain</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">display</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="hypergraphs">
+<h2>Hypergraphs<a class="headerlink" href="#hypergraphs" title="Link to this heading">#</a></h2>
+<p>A <strong>hypergraph</strong> is an ordered pair <span class="math notranslate nohighlight">\(H = (V, E)\)</span> where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(V\)</span> is a finite set whose elements are called <strong>vertices</strong>, and</p></li>
+<li><p><span class="math notranslate nohighlight">\(E\)</span> is a multiset (or set) of nonempty subsets of <span class="math notranslate nohighlight">\(V\)</span>, whose elements are called <strong>hyperedges</strong></p></li>
+</ul>
+<div align="center">
+<figure class="align-default" id="id2">
+<a class="no-caption-number reference internal image-reference" href="../_images/si-hyp.png"><img alt="../_images/si-hyp.png" class="no-caption-number" src="../_images/si-hyp.png" style="width: 400px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text"><em>A hypergraph with 5 vertices and 4 hyperedges.</em></span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="hypertrees">
+<h2>Hypertrees<a class="headerlink" href="#hypertrees" title="Link to this heading">#</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(H = (V, E)\)</span> be a hypergraph. A subset ( F \subseteq E ) is a <strong>hyperforest</strong> if it is possible to select two distinct vertices from each hyperedge ( e \in F ) such that the chosen pairs, when regarded as graph edges on <span class="math notranslate nohighlight">\(V\)</span> , form a forest.<br />
+If that representing forest can be made into a spanning tree, then ( F ) is a <strong>hypertree</strong>.</p>
+<div align="center">
+<figure class="align-default" id="id3">
+<a class="no-caption-number reference internal image-reference" href="../_images/si-tree.png"><img alt="../_images/si-tree.png" class="no-caption-number" src="../_images/si-tree.png" style="width: 400px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text"><em>A hypertree with a spanning tree.</em></span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="equivalent-definition-of-hypertrees">
+<h2>Equivalent definition of hypertrees<a class="headerlink" href="#equivalent-definition-of-hypertrees" title="Link to this heading">#</a></h2>
+<p>For a non-empty set <span class="math notranslate nohighlight">\(X \subseteq V\)</span> and a subset
+<span class="math notranslate nohighlight">\(F \subseteq E\)</span>, the set <span class="math notranslate nohighlight">\(F[X]\)</span> represents the collection of hyperedges in <span class="math notranslate nohighlight">\(F\)</span> that
+are entirely contained in <span class="math notranslate nohighlight">\(X\)</span>. The hypergraph <span class="math notranslate nohighlight">\((X, E[X])\)</span> is called the <em>subhypergraph
+induced by the vertex subset</em> <span class="math notranslate nohighlight">\(X\)</span> and is denoted by <span class="math notranslate nohighlight">\(H[X]\)</span>.</p>
+<p>A set <span class="math notranslate nohighlight">\(F \subseteq E\)</span> is a <strong>hyperforest</strong> if <span class="math notranslate nohighlight">\(|F[X]| \le |X| - 1\)</span> for every
+non-empty subset <span class="math notranslate nohighlight">\(X \subseteq V\)</span>. A hyperforest <span class="math notranslate nohighlight">\(F\)</span> is a <strong>hypertree</strong> of <span class="math notranslate nohighlight">\(H\)</span>
+if <span class="math notranslate nohighlight">\(|F| = |V| - 1\)</span>.</p>
+</section>
+<section id="usage-matrix">
+<h2>Usage matrix<a class="headerlink" href="#usage-matrix" title="Link to this heading">#</a></h2>
+<p>Next, we are going to find all indicator vectors of all hypertrees.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Helper function to get the powerset of a list</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">powerset</span><span class="p">(</span><span class="n">iterable</span><span class="p">):</span>
+    <span class="s2">&quot;powerset([1,2,3]) --&gt; [(), (1,), (2,), (3,), (1,2), (1,3), (2,3), (1,2,3)]&quot;</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span><span class="n">combinations</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+<span class="c1"># Output the hypertree family</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">trees</span><span class="p">(</span><span class="n">V</span><span class="p">,</span><span class="n">E</span><span class="p">):</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+    <span class="n">dN</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">J</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">E</span><span class="p">)),</span> <span class="nb">len</span><span class="p">(</span><span class="n">V</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">Jgood</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">for</span> <span class="n">X</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">powerset</span><span class="p">(</span><span class="n">V</span><span class="p">))[</span><span class="mi">1</span><span class="p">:]:</span>
+            <span class="c1"># Check the subsets of E indexed by J</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">([</span><span class="n">F</span> <span class="k">for</span> <span class="n">F</span> <span class="ow">in</span> <span class="p">[</span><span class="n">E</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">J</span><span class="p">]</span> <span class="k">if</span> <span class="nb">set</span><span class="p">(</span><span class="n">F</span><span class="p">)</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="n">X</span><span class="p">)])</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">Jgood</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="k">break</span>
+        <span class="k">if</span> <span class="n">Jgood</span><span class="p">:</span>
+            <span class="n">row</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">E</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">J</span><span class="p">:</span>
+                <span class="n">row</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="n">m</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span>
+            <span class="n">dN</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">dN</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> 
+    <span class="k">return</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the hyperedge set E of the hypergraph H = (V, E)</span>
+<span class="c1"># Each hyperedge is a subset of vertices in V\# Define the number of vertices</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">V</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">E</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">]]</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">trees</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">E</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Usage matrix:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Usage matrix:
+[[0. 1. 1. 0. 1. 1. 1.]
+ [0. 1. 1. 1. 0. 1. 1.]
+ [0. 1. 1. 1. 1. 0. 1.]
+ [1. 0. 1. 0. 1. 1. 1.]
+ [1. 0. 1. 1. 0. 1. 1.]
+ [1. 0. 1. 1. 1. 0. 1.]
+ [1. 1. 0. 0. 1. 1. 1.]
+ [1. 1. 0. 1. 0. 1. 1.]
+ [1. 1. 0. 1. 1. 0. 1.]
+ [1. 1. 1. 0. 0. 1. 1.]
+ [1. 1. 1. 0. 1. 0. 1.]
+ [1. 1. 1. 0. 1. 1. 0.]
+ [1. 1. 1. 1. 0. 1. 0.]
+ [1. 1. 1. 1. 1. 0. 0.]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="hypertree-modulus">
+<h2>Hypertree modulus<a class="headerlink" href="#hypertree-modulus" title="Link to this heading">#</a></h2>
+<p>we compute 2-modulus and 1-modulus of the hypertree family</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the 2-modulus (p = 2)</span>
+<span class="n">mod2</span><span class="p">,</span> <span class="n">rho2</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">matrix_modulus</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== 2-Modulus Results ===&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Modulus value (mod₂): </span><span class="si">{</span><span class="n">mod2</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Optimal density η*   : </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">rho2</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">mod2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Compute the 1-modulus (p = 1)</span>
+<span class="n">mod1</span><span class="p">,</span> <span class="n">rho1</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">matrix_modulus</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== 1-Modulus Results ===&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Modulus value (mod₁): </span><span class="si">{</span><span class="n">mod1</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== 2-Modulus Results ===
+Modulus value (mod₂): 0.2791
+Optimal density η*   : [0.75 0.75 0.75 0.67 0.67 0.67 0.75]
+
+=== 1-Modulus Results ===
+Modulus value (mod₁): 1.3333
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="strength-and-fractional-arboricity">
+<h2>Strength and fractional arboricity<a class="headerlink" href="#strength-and-fractional-arboricity" title="Link to this heading">#</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{P} = \{V_1, \ldots, V_k\}\)</span> be a partition of the vertex set <span class="math notranslate nohighlight">\(V\)</span>, and
+let <span class="math notranslate nohighlight">\(F \subseteq E\)</span>. We define <span class="math notranslate nohighlight">\(\delta(\mathcal{P})\)</span> as the set of hyperedges that intersect at least two parts of the partition <span class="math notranslate nohighlight">\(\mathcal{P}\)</span>. The notation
+<span class="math notranslate nohighlight">\(|\mathcal{P}|\)</span> represents the number of parts in the partition <span class="math notranslate nohighlight">\(\mathcal{P}\)</span>.</p>
+<p>Following the concepts of strength and fractional arboricity in graphs, we define
+the <em>strength</em> of a hypergraph <span class="math notranslate nohighlight">\(H\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[
+S(H) := \min \left\{ \frac{|\delta(\mathcal{P})|}{|\mathcal{P}| - 1} :
+\mathcal{P} \text{ is a partition of } V, \ |\mathcal{P}| \ge 2 \right\},
+\]</div>
+<p>and define the <em>fractional arboricity</em> of <span class="math notranslate nohighlight">\(H\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[
+D(H) := \max \left\{ \frac{|E[X]|}{|X| - 1} : X \subseteq V, \ |X| \ge 2 \right\}.
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Compute the strength of a hypergraph</span>
+<span class="c1">## All partition of a set</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">partitions</span><span class="p">(</span><span class="n">set_</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">set_</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">set_</span><span class="p">)]</span>
+        <span class="k">return</span>
+    <span class="n">first_element</span> <span class="o">=</span> <span class="n">set_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">smaller_partition</span> <span class="ow">in</span> <span class="n">partitions</span><span class="p">(</span><span class="n">set_</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
+        <span class="c1"># Insert first element into each part of the partition</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">smaller_partition</span><span class="p">)):</span>
+            <span class="n">new_partition</span> <span class="o">=</span> <span class="n">smaller_partition</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="p">[[</span><span class="n">first_element</span><span class="p">]</span> <span class="o">+</span> <span class="n">smaller_partition</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="n">smaller_partition</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span>
+            <span class="k">yield</span> <span class="n">new_partition</span>
+        <span class="c1"># Or create a new part with the first element &lt;class &#39;generator&#39;&gt;</span>
+        <span class="k">yield</span> <span class="p">[[</span><span class="n">first_element</span><span class="p">]]</span> <span class="o">+</span> <span class="n">smaller_partition</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">strength</span><span class="p">(</span><span class="n">V</span><span class="p">,</span><span class="n">E</span><span class="p">,</span> <span class="n">sigma</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">sigma</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">sigma</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
+    <span class="n">strength</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">V</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">partitions</span><span class="p">(</span><span class="n">V</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">sum</span><span class="p">([</span><span class="n">sigma</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">E</span><span class="p">))</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">E</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">p</span><span class="p">)])</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">strength</span><span class="p">:</span>
+               <span class="n">strength</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">sigma</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">E</span><span class="p">))</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">E</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">p</span><span class="p">)])</span> <span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">strength</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">fractional_arboricity</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute the weighted fractional arboricity D_sigma(H) of a hypergraph H = (V, E):</span>
+<span class="sd">        D_sigma(H) = max_{X ⊆ V, |X| ≥ 2} σ(E[X]) / (|X| - 1)</span>
+<span class="sd">    where σ(E[X]) = sum of weights of edges fully contained in X.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    V : iterable</span>
+<span class="sd">        Vertex set (e.g., range(n) or list of vertices)</span>
+<span class="sd">    E : list of iterables</span>
+<span class="sd">        Hyperedges; each hyperedge is an iterable of vertices in V</span>
+<span class="sd">    sigma : list or array-like, optional</span>
+<span class="sd">        Weights corresponding to each hyperedge; defaults to all 1&#39;s</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Weighted fractional arboricity D_sigma(H)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">V</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">V</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;D_sigma(H) is undefined for |V| &lt; 2.&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">sigma</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">sigma</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">E</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;sigma must have the same length as E.&quot;</span><span class="p">)</span>
+
+    <span class="n">E_sets</span> <span class="o">=</span> <span class="p">[</span><span class="nb">set</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">E</span><span class="p">]</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="c1"># Iterate over all subsets X with |X| ≥ 2</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">V</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">X</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+            <span class="n">Xset</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+            <span class="c1"># Sum of weights of edges contained in X</span>
+            <span class="n">weighted_sum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">sigma</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">E_sets</span><span class="p">)</span> <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="n">Xset</span><span class="p">))</span>
+            <span class="n">D</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">weighted_sum</span> <span class="o">/</span> <span class="p">(</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">D</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Example </span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">V</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">E</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">]]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Strength = &#39;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">strength</span><span class="p">(</span><span class="n">V</span><span class="p">,</span><span class="n">E</span><span class="p">),</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Fractional_arboricity =&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">fractional_arboricity</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">E</span><span class="p">),</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Strength =  1.33
+Fractional_arboricity = 1.5
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="hypertree-1-modulus-and-strength">
+<h2>Hypertree 1-modulus and strength<a class="headerlink" href="#hypertree-1-modulus-and-strength" title="Link to this heading">#</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(H\)</span> be a partition-connected hypergraph. Then,
+$<span class="math notranslate nohighlight">\(
+\operatorname{Mod}_1(\Gamma(H)) = S(H).
+\)</span>$</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Example: </span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">V</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">E</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">]]</span>
+
+<span class="n">mod1</span><span class="p">,</span> <span class="n">rho1</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">matrix_modulus</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;1-modulus: mod = &#39;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">mod1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Strength = &#39;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">strength</span><span class="p">(</span><span class="n">V</span><span class="p">,</span><span class="n">E</span><span class="p">),</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1-modulus: mod =  1.33
+Strength =  1.33
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="hypertree-2-modulus-encodes-strength-and-fractional-arboricity">
+<h2>Hypertree 2-modulus encodes strength and fractional arboricity<a class="headerlink" href="#hypertree-2-modulus-encodes-strength-and-fractional-arboricity" title="Link to this heading">#</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(H\)</span> be a partition-connected hypergraph with weights <span class="math notranslate nohighlight">\(\sigma \in \mathbb{R}^E_{&gt;0}\)</span>.</p>
+<p>For 2-modulus, let <span class="math notranslate nohighlight">\(\eta^*\)</span> be the optimal density of <span class="math notranslate nohighlight">\(\operatorname{Mod}_{2}(\widehat{\Gamma})\)</span>, we have
+$<span class="math notranslate nohighlight">\(
+\frac{1}{(\sigma^{-1}\eta)^*_{max}}= S_{\sigma}(H), \qquad \frac{1}{(\sigma^{-1}\eta)^*_{min}}= D_{\sigma}(H).
+\)</span>$</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Example: </span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">V</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">E</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">]]</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">trees</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">E</span><span class="p">)</span>
+<span class="n">mod2</span><span class="p">,</span> <span class="n">rho2</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">matrix_modulus</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;2-modulus: mod = &#39;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">mod2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;2-modulus: eta^* = &#39;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">rho2</span><span class="o">/</span><span class="n">mod2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Strength = &#39;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">strength</span><span class="p">(</span><span class="n">V</span><span class="p">,</span><span class="n">E</span><span class="p">),</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Fractional_arboricity =&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">fractional_arboricity</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">E</span><span class="p">),</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2-modulus: mod =  0.33
+2-modulus: eta^* =  [1. 1. 1.]
+Strength =  1.0
+Fractional_arboricity = 1.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Example 2</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">V</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">E</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">]]</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">trees</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">E</span><span class="p">)</span>
+<span class="n">mod2</span><span class="p">,</span> <span class="n">rho2</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">matrix_modulus</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;2-modulus: mod = &#39;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">mod2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;2-modulus: eta^* = &#39;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">rho2</span><span class="o">/</span><span class="n">mod2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Strength = &#39;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">strength</span><span class="p">(</span><span class="n">V</span><span class="p">,</span><span class="n">E</span><span class="p">),</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Fractional_arboricity =&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">fractional_arboricity</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">E</span><span class="p">),</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2-modulus: mod =  0.28
+2-modulus: eta^* =  [0.75 0.75 0.75 0.67 0.67 0.67 0.75]
+Strength =  1.33
+Fractional_arboricity = 1.5
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="multitree-hypergraph">
+<h2>Multitree hypergraph<a class="headerlink" href="#multitree-hypergraph" title="Link to this heading">#</a></h2>
+<p>A natural question arises: <em>what happens when <span class="math notranslate nohighlight">\(H\)</span> is not partition-connected?</em><br />
+Does modulus still reveal a hierarchical structure? The answer is <strong>yes</strong>.</p>
+<p>To explain this, we introduce the family of <strong>multitrees</strong> <span class="math notranslate nohighlight">\(\Omega = \Omega(H)\)</span> as follows:  Each multitree is a vector <span class="math notranslate nohighlight">\(x \in \mathbb{R}^E\)</span> where <span class="math notranslate nohighlight">\(x(e)\)</span> counts how many copies of a hyperedge <span class="math notranslate nohighlight">\(e\)</span> are included such that their union forms a hypertree on <span class="math notranslate nohighlight">\(V\)</span>.</p>
+<p><strong>Example</strong><br />
+Consider a hypergraph <span class="math notranslate nohighlight">\(H = (V, E)\)</span> with  <span class="math notranslate nohighlight">\(V = \{v_1, v_2, v_3\}\)</span>,  <span class="math notranslate nohighlight">\(E = \{e_1, e_2\}\)</span>, and  <span class="math notranslate nohighlight">\(e_1 = e_2 = \{v_1, v_2, v_3\}\)</span>.</p>
+<div align="center">
+<figure class="align-default" id="id4">
+<a class="no-caption-number reference internal image-reference" href="../_images/si-mul.png"><img alt="../_images/si-mul.png" class="no-caption-number" src="../_images/si-mul.png" style="width: 300px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text"><em><span class="math notranslate nohighlight">\(\Omega(H)=\{(2, 1)\}\)</span></em></span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<div align="center">
+<figure class="align-default" id="id5">
+<a class="no-caption-number reference internal image-reference" href="../_images/hyper1.png"><img alt="../_images/hyper1.png" class="no-caption-number" src="../_images/hyper1.png" style="width: 250px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text"><em><span class="math notranslate nohighlight">\(\Omega(H)=\{(1, 1), (2, 0), (0, 2)\}\)</span></em></span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="id1">
+<h2>Usage matrix<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>Next, we are going to find the usage matrix of the multitree family</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Output the multitree family</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">multitrees</span><span class="p">(</span><span class="n">V</span><span class="p">,</span><span class="n">E</span><span class="p">):</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+    <span class="n">dN</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">cE</span> <span class="o">=</span> <span class="n">E</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">J</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cE</span><span class="p">)),</span> <span class="nb">len</span><span class="p">(</span><span class="n">V</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">Jgood</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">for</span> <span class="n">X</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">powerset</span><span class="p">(</span><span class="n">V</span><span class="p">))[</span><span class="mi">1</span><span class="p">:]:</span>
+            <span class="c1"># Check the subsets of E indexed by J</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">([</span><span class="n">F</span> <span class="k">for</span> <span class="n">F</span> <span class="ow">in</span> <span class="p">[</span><span class="n">cE</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">J</span><span class="p">]</span> <span class="k">if</span> <span class="nb">set</span><span class="p">(</span><span class="n">F</span><span class="p">)</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="n">X</span><span class="p">)])</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">Jgood</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="k">break</span>
+        <span class="k">if</span> <span class="n">Jgood</span><span class="p">:</span>
+            <span class="n">row</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">E</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">J</span><span class="p">:</span>
+                <span class="n">row</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="n">m</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span>
+            <span class="n">dN</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">dN</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Example: </span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">V</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">E</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]]</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">multitrees</span><span class="p">(</span><span class="n">V</span><span class="p">,</span><span class="n">E</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Usage matrix of the multitree family:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Usage matrix of the multitree family:
+[[1. 1. 1. 0. 1.]
+ [1. 1. 1. 1. 0.]
+ [2. 0. 1. 0. 1.]
+ [2. 0. 1. 1. 0.]
+ [2. 1. 0. 0. 1.]
+ [2. 1. 0. 1. 0.]
+ [3. 0. 0. 0. 1.]
+ [3. 0. 0. 1. 0.]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the 2-modulus (p = 2)</span>
+<span class="n">mod2</span><span class="p">,</span> <span class="n">rho2</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">matrix_modulus</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== 2-Modulus Results ===&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Modulus value (mod₂): </span><span class="si">{</span><span class="n">mod2</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Optimal density η*   : </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">rho2</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">mod2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Compute the 1-modulus (p = 1)</span>
+<span class="n">mod1</span><span class="p">,</span> <span class="n">rho1</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">matrix_modulus</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== 1-Modulus Results ===&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Modulus value (mod₁): </span><span class="si">{</span><span class="n">mod1</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Strength = &#39;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">strength</span><span class="p">(</span><span class="n">V</span><span class="p">,</span><span class="n">E</span><span class="p">),</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Fractional_arboricity =&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">fractional_arboricity</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">E</span><span class="p">),</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== 2-Modulus Results ===
+Modulus value (mod₂): 0.2857
+Optimal density η*   : [1.  1.  1.  0.5 0.5]
+
+=== 1-Modulus Results ===
+Modulus value (mod₁): 1.0000
+Strength =  1.0
+Fractional_arboricity = 2.0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="multitrees-modulus-properties">
+<h2>Multitrees modulus properties<a class="headerlink" href="#multitrees-modulus-properties" title="Link to this heading">#</a></h2>
+<p>We have
+$<span class="math notranslate nohighlight">\(
+\operatorname{Mod}_1(\Omega(H)) = S(H).
+\)</span>$</p>
+<p>Let <span class="math notranslate nohighlight">\(\eta^*\)</span> be the optimal density of <span class="math notranslate nohighlight">\(\operatorname{Mod}_{2}(\widehat{\Omega})\)</span>, we have
+$<span class="math notranslate nohighlight">\(
+S(H) = \frac{1}{\eta^*_{\max}}, 
+\qquad 
+D(H) = \frac{1}{\eta^*_{\min}}.
+\)</span>$</p>
+<p align="center">
+A hypergraph \( H \) for which \( S(H) = D(H) \) is called a 
+<strong>homogeneous</strong> hypergraph.
+</p>
+<p>If <span class="math notranslate nohighlight">\(H\)</span> is partition-connected, then <span class="math notranslate nohighlight">\(\operatorname{Mod}_{2}(\widehat{\Omega})\)</span> and <span class="math notranslate nohighlight">\(\operatorname{Mod}_{2}(\widehat{\Gamma})\)</span> have the same optimal density.</p>
+</section>
+<section id="decomposition-process">
+<h2>Decomposition process<a class="headerlink" href="#decomposition-process" title="Link to this heading">#</a></h2>
+<p>We also propose a <strong>deflation process</strong> for <span class="math notranslate nohighlight">\(H\)</span> that identifies a hierarchical structure of hypergraphs in which each subhypergraph of the deflation preserves <span class="math notranslate nohighlight">\(\eta^*\)</span>, and its strength and fractional arboricity are likewise encoded in <span class="math notranslate nohighlight">\(\eta^*\)</span>.</p>
+<ul class="simple">
+<li><p>Red hyperedges: <span class="math notranslate nohighlight">\(\eta^* = \tfrac{3}{5}\)</span></p></li>
+<li><p>Green hyperedges: <span class="math notranslate nohighlight">\(\eta^* = 1\)</span></p></li>
+<li><p>Blue hyperedges: <span class="math notranslate nohighlight">\(\eta^* = \tfrac{3}{2}\)</span></p></li>
+</ul>
+<div align="center">
+<figure class="align-default">
+<a class="no-caption-number reference internal image-reference" href="../_images/de-part.png"><img alt="../_images/de-part.png" class="no-caption-number" src="../_images/de-part.png" style="width: 400px;" />
+</a>
+</figure>
+<div class="math notranslate nohighlight">
+\[
+\downarrow
+\]</div>
+<div align="center">
+<figure class="align-default">
+<a class="no-caption-number reference internal image-reference" href="../_images/de-s1-part.png"><img alt="../_images/de-s1-part.png" class="no-caption-number" src="../_images/de-s1-part.png" style="width: 400px;" />
+</a>
+</figure>
+<div class="math notranslate nohighlight">
+\[
+\downarrow
+\]</div>
+<div align="center">
+<figure class="align-default">
+<a class="no-caption-number reference internal image-reference" href="../_images/de-s2.png"><img alt="../_images/de-s2.png" class="no-caption-number" src="../_images/de-s2.png" style="width: 250px;" />
+</a>
+</figure>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tree_book"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Reinforcement_and_sparsification.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Reinforcement and sparsification for graphs</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../References.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">References</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypergraphs">Hypergraphs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypertrees">Hypertrees</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equivalent-definition-of-hypertrees">Equivalent definition of hypertrees</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage-matrix">Usage matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypertree-modulus">Hypertree modulus</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#strength-and-fractional-arboricity">Strength and fractional arboricity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypertree-1-modulus-and-strength">Hypertree 1-modulus and strength</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypertree-2-modulus-encodes-strength-and-fractional-arboricity">Hypertree 2-modulus encodes strength and fractional arboricity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multitree-hypergraph">Multitree hypergraph</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Usage matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multitrees-modulus-properties">Multitrees modulus properties</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decomposition-process">Decomposition process</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Huy Truong
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
